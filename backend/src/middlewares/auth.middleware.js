@@ -25,7 +25,6 @@ import { User } from "../models/user.model.js";
 //     }
 // };
 
-
 // export const authorizeRole = (...roles) => {
 //     return (req, res, next) => {
 //         if(!roles.includes(req.user.role)){
@@ -35,31 +34,29 @@ import { User } from "../models/user.model.js";
 //     }
 // }
 
-
-
 export const authorizeRole = (...roles) => {
     return async (req, res, next) => {
-        
-
         const token = req.cookies.token;
 
         if (!token) {
-            throw new ErrorHandler("You are not logged in...", 401);
+            return next(new ErrorHandler("You are not logged in...", 401));
         }
 
         const _id = await jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(_id);
 
         if (!user) {
-            throw new ErrorHandler("You are not logged in", 401);
+            return next(new ErrorHandler("You are not logged in", 401));
         }
 
         req.user = user;
 
         if (!roles.includes(req.user.role)) {
-            throw new ErrorHandler(
-                `Role : ${req.user.role} is not allowed to access`,
-                401
+            return next(
+                new ErrorHandler(
+                    `Role : ${req.user.role} is not allowed to access`,
+                    401
+                )
             );
         }
 
