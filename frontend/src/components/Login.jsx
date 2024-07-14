@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <div className="flex mt-16 justify-center items-center">
       <form
-        className="flex flex-col justify-center items-center border border-blue-300 p-2.5 rounded-lg sm:w-6/12 md:w-5/12 lg:w-4/12 w-11/12 gap-4"
+        className="flex flex-col justify-center items-center p-2.5 rounded-lg sm:w-6/12 md:w-5/12 lg:w-4/12 w-11/12 gap-4"
         onSubmit={handleSubmit}
       >
         <Input
