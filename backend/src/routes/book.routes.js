@@ -5,6 +5,7 @@ import {
     deleteBook,
     getAllBooks,
     searchbooks,
+    sendBookRequest,
 } from "../controllers/book.controller.js";
 import { authorizeRole } from "../middlewares/auth.middleware.js";
 
@@ -26,5 +27,8 @@ router
 
 //Search Book
 router.route("/searchBooks").get(searchbooks);
+
+//Send Book Request
+router.route("/send/request").post(authorizeRole("user"), sendBookRequest);
 
 export default router;

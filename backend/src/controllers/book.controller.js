@@ -98,6 +98,7 @@ export const deleteBook = asyncHandler(async (req, res) => {
     });
 }, errorOptions);
 
+//Search Book
 export const searchbooks = asyncHandler(async (req, res) => {
     const search = req.query.search;
 
@@ -122,3 +123,6 @@ export const searchbooks = asyncHandler(async (req, res) => {
         data: books,
     });
 });
+
+//Send Request
+export const sendBookRequest = asyncHandler(async (req, res) => {});
