@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Input } from "./";
 import { Button } from "./";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { addUser } from "../features/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,19 +25,20 @@ const Login = () => {
     if (formData.password.trim().length < 8) {
       setErrorMessage("* password must be at least 8 characters");
     } else {
-      console.log(formData);
     }
 
     if (formData.password.trim().length < 8) {
       setErrorMessage("* password must be at least 8 characters");
     } else {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/v1/user/login",
+        "http://localhost:8000/api/v1/user/login",
         formData,
         {
           withCredentials: true,
         }
       );
+
+      console.log(res.data);
       dispatch(addUser(res.data.user));
       navigate("/");
       setErrorMessage("");
@@ -53,9 +56,9 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <Input
-          inputName="username"
-          labelText="Username"
-          type="text"
+          inputName="email"
+          labelText="Email"
+          type="email"
           onChange={handleInput}
         />
         <Input
@@ -78,7 +81,7 @@ const Login = () => {
         </div>
         <Button
           buttonText="Login"
-          classes="bg-green-100 text-green-900 hover:bg-green-200"
+          classes="bg-green-50 border-green-600 text-green-600 hover:bg-green-100 hover:text-green-700"
         />
       </form>
     </div>
