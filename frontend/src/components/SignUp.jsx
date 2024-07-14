@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "./";
 import { Button } from "./";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -108,6 +109,9 @@ const Signup = () => {
                     onChange={handleconfirmPassword}
                 />
                 <p className="text-red-500 font-medium">{errorMessage}</p>
+                <p className="text-sm text-blue-500 cursor-pointer">
+                    Already an user? <Link to="/login">Login</Link>
+                </p>
                 <Button
                     buttonText="Signup"
                     classes="bg-green-100 text-green-900 hover:bg-green-200"
