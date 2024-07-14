@@ -8,8 +8,8 @@ const UserHome = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-4 mt-4">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+        <div className="sm:col-span-2">
           <div className="flex flex-col gap-4">
             <h2 className="text-xl font-medium border-b-2 border-black">
               Search Books

@@ -21,7 +21,7 @@ const SearchBook = ({ classes }) => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className={`flex items-center gap-2 ${classes}`}
+                className={`flex items-center gap-2 flex-col md:flex-row ${classes}`}
             >
                 <input
                     type="text"

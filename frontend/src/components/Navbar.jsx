@@ -49,7 +49,7 @@ const Navbar = () => {
                 <div
                     className={`${
                         toggleMenu
-                            ? "fixed top-5 right-0 bg-blue-100 flex flex-col w-1/2 px-5 h-screen"
+                            ? "fixed top-0 right-0 bg-blue-100 flex flex-col w-1/2 px-5 h-screen py-5"
                             : "hidden"
                     } md:flex md:flex-row gap-4 md:items-center md:px-0 md:relative md:w-auto md:top-0 md:h-auto`}
                 >
@@ -65,6 +65,7 @@ const Navbar = () => {
                                             : "hover:text-blue-600"
                                     }`
                                 }
+                                onClick={() => setToggleMenu(false)}
                             >
                                 {item.name}
                             </NavLink>
@@ -84,7 +85,10 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <NavLink to="/login">
+                                <NavLink
+                                    to="/login"
+                                    onClick={() => setToggleMenu(false)}
+                                >
                                     <Button buttonText={"Login"} />
                                 </NavLink>
                             </>

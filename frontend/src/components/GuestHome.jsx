@@ -16,17 +16,21 @@ const GuestHome = () => {
       <h2 className="text-center text-xl font-medium text-amber-600">
         Search the book available in library
       </h2>
-      <SearchBook classes={"mx-auto w-9/12"} />
+      <SearchBook classes={"mx-auto w-full md:w-9/12"} />
+
+      {/* books */}
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div className="w-10/12">
-          <h2 className="text-xl font-semibold my-4">New Arrivals</h2>
+          <h2 className="text-xl font-semibold hidden sm:block md:my-4">
+            New Arrivals
+          </h2>
           <div className="flex flex-col gap-4">
             <Book bookDetail={bookDetail} />
             <Book bookDetail={bookDetail} />
           </div>
         </div>
-        <div className="w-10/12">
-          <h2 className="text-xl font-semibold my-4">Trending</h2>
+        <div className="w-10/12 hidden sm:block">
+          <h2 className="text-xl font-semibold md:my-4">Trending</h2>
           <div className="flex flex-col gap-4">
             <Book bookDetail={bookDetail} />
           </div>
