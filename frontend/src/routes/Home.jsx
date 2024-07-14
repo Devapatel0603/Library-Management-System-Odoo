@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const { user } = useSelector((state) => state.user);
-  return <>{!user ? <UserHome /> : <GuestHome />}</>;
+  return <>{user ? <UserHome /> : <GuestHome />}</>;
 };
 
 export default Home;

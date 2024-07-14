@@ -10,7 +10,6 @@ const UserBook = ({
     color: "blue",
   },
 }) => {
-  console.log(info);
   const buttonColor = `bg-${info.color}-100 text-${info.color}-800  border-${info.color}-800`;
   return (
     <div className="flex p-4 border border-gray-300 rounded-lg my-4">
