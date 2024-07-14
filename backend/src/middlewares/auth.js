@@ -2,7 +2,7 @@ import { ErrorHandler } from "../utils/errorHandler.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
-const isLoggedin = async (req, res, next) => {
+export const isLoggedin = async (req, res, next) => {
     try {
         const token = req.cookies.token;
 
@@ -25,4 +25,12 @@ const isLoggedin = async (req, res, next) => {
     }
 };
 
-export { isLoggedin };
+
+export const authorizeRole = (...roles) => {
+    return (req, res, next) => {
+        if(!roles.includes(req.user.role)){
+            throw new ErrorHandler(`Role : ${req.user.role} is not allowed to access`, 401);
+        }
+        next();
+    }
+}
