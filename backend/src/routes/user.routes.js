@@ -7,6 +7,7 @@ import {
     getUser,
     verifyResetPasswordToken,
     register,
+    googleLogin,
 } from "../controllers/user.controller.js";
 import { isLoggedin } from "../middlewares/isLoggedin.middleware.js";
 
@@ -17,6 +18,9 @@ router.route("/login").post(login);
 
 //Register
 router.route("/register").post(register);
+
+//Google Login
+router.route("/google/login").post(googleLogin);
 
 //Logout
 router.route("/logout").get(isLoggedin, logout);
