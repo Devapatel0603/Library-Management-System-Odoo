@@ -10,6 +10,7 @@ import {
     googleLogin,
 } from "../controllers/user.controller.js";
 import { isLoggedin } from "../middlewares/isLoggedin.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
 
@@ -17,7 +18,7 @@ const router = Router();
 router.route("/login").post(login);
 
 //Register
-router.route("/register").post(register);
+router.route("/register").post(upload.single("profile_photo"), register);
 
 //Google Login
 router.route("/google/login").post(googleLogin);

@@ -37,10 +37,30 @@ const userSchema = new mongoose.Schema(
         role: {
             type: String,
             required: true,
-            enum: ["admin", "examiner", "invigilator"],
-            default: "invigilator",
+            enum: ["admin", "librarian", "user"],
+            default: "user",
         },
-        resetPasswordToken: {
+        profile_photo: {
+            type: String,
+            required: true,
+        },
+        line1: {
+            type: String,
+            required: true,
+        },
+        state: {
+            type: String,
+            required: true,
+        },
+        country: {
+            type: String,
+            required: true,
+        },
+        pincode: {
+            type: Number,
+            required: true,
+        },
+        setPasswordToken: {
             type: String,
             select: false,
         },
