@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const requestSchema = new mongoose.Schema(
+const userBooksSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
@@ -12,6 +12,14 @@ const requestSchema = new mongoose.Schema(
             ref: "Book",
             required: true,
         },
+        expire: {
+            type: Date,
+            default: Date.now(),
+        },
     },
     { timestamps: true }
 );
+
+const UserBook = mongoose.model("UserBook", userBooksSchema);
+
+export default UserBook;

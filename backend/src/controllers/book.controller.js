@@ -3,6 +3,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import Book from "../models/book.model.js";
 import { fetchBook } from "../utils/fetchBook.js";
 import mongoose from "mongoose";
+import Request from "../models/request.model.js";
+import UserBook from "../models/userBooks.model.js";
 
 const errorOptions = [
     {
@@ -125,4 +127,55 @@ export const searchbooks = asyncHandler(async (req, res) => {
 });
 
 //Send Request
-export const sendBookRequest = asyncHandler(async (req, res) => {});
+export const sendBookRequest = asyncHandler(async (req, res) => {
+    const _id = req.param._id;
+
+    const request = await Request.create({
+        user: req.user._id,
+        book: _id,
+    });
+
+    res.status(200).json({
+        success: true,
+        message: "Request sent Successfully",
+    });
+});
+
+//Get All Request
+export const getRequests = asyncHandler(async (req, res) => {
+    const requests = await Request.find();
+    res.status(200).json({
+        success: true,
+        requests,
+    });
+});
+
+//Accept Request
+export const acceptBookRequest = asyncHandler(async (req, res) => {
+    const _id = req.params._id;
+
+    const request = await Request.findById(_id);
+
+    if (!request) {
+        throw new ErrorHandler("Request not exist", 400);
+    }
+
+    const userBook = await UserBook.create({
+        user: req.user._id,
+        book: _id,
+        expires,
+    });
+
+    const deleteRequest = await Request.deleteOne(_id);
+
+    res.status(200).json({
+        success: true,
+        message: "Request accept",
+    });
+});
+
+export const rejectBookRequest = asyncHandler(async (req, res) => {
+    res.status(200).json({
+        success: true,
+    });
+});

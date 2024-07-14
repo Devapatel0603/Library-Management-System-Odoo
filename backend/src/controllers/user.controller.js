@@ -235,7 +235,6 @@ const resetPassword = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
     const token = req.cookies.token;
 
-    console.log(token);
     if (!token) {
         throw new ErrorHandler("You are not logged in", 200);
     }

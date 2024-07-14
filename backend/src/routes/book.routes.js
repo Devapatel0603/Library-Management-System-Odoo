@@ -6,6 +6,9 @@ import {
     getAllBooks,
     searchbooks,
     sendBookRequest,
+    getRequests,
+    acceptBookRequest,
+    rejectBookRequest,
 } from "../controllers/book.controller.js";
 import { authorizeRole } from "../middlewares/auth.middleware.js";
 
@@ -29,6 +32,21 @@ router
 router.route("/searchBooks").get(searchbooks);
 
 //Send Book Request
-router.route("/send/request").post(authorizeRole("user"), sendBookRequest);
+router
+    .route("/send/request/:_id")
+    .post(authorizeRole("user", "librarian", "admin"), sendBookRequest);
+
+//Accept Book Request
+router
+    .route("/accept/request")
+    .get(authorizeRole("librarian"), acceptBookRequest);
+
+//Reject Book Request
+router
+    .route("/reject/request")
+    .post(authorizeRole("librarian"), rejectBookRequest);
+
+//Get All Book Requests
+router.route("/get/requests").post(authorizeRole("librarian"), getRequests);
 
 export default router;
