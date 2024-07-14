@@ -9,7 +9,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index exact element={<Home />} />
-          <Route path="about" exact element={"About Page"} />
           <Route path="login" exact element={<Login />} />
           <Route path="signup" exact element={<SignUp />} />
           <Route path="userbook" exact element={<UserBook />} />
