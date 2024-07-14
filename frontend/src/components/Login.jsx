@@ -31,15 +31,16 @@ const Login = () => {
             setErrorMessage("* password must be at least 8 characters");
         } else {
             const res = await axios.post(
-                "http://localhost:8000/api/v1/user/login",
+                `${import.meta.env.VITE_BACKEND_URL}/user/login`,
                 formData,
                 {
                     withCredentials: true,
                 }
             );
-            console.log(res.data.user);
-            dispatch(addUser(res.data.user));
-            navigate("/");
+            if (res.status === 200) {
+                dispatch(addUser(res.data.user));
+                navigate("/");
+            }
             setErrorMessage("");
             setFormData({
                 email: "",

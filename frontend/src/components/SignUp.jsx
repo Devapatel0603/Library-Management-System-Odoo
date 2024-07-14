@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/userSlice";
-import { toast } from "react-toastify";
 
 const Signup = () => {
     const dispatch = useDispatch();
@@ -68,7 +67,6 @@ const Signup = () => {
 
             if (res.status === 201) {
                 dispatch(addUser(res.data.user));
-                toast.success("Register Successful");
             }
         }
     };

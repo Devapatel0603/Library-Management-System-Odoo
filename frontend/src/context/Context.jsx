@@ -2,7 +2,6 @@ import axios from "axios";
 import { createContext } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/userSlice";
-import { toast } from "react-toastify";
 
 export const Context = createContext();
 
