@@ -9,7 +9,7 @@ import {
     register,
     googleLogin,
 } from "../controllers/user.controller.js";
-import { authorizeRole } from "../middlewares/auth.js";
+import { authorizeRole } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
@@ -24,7 +24,9 @@ router.route("/register").post(upload.single("profile_photo"), register);
 router.route("/google/login").post(googleLogin);
 
 //Logout
-router.route("/logout").get(authorizeRole("user"), logout);
+router
+    .route("/logout")
+    .get(authorizeRole("user", "librarian", "admin"), logout);
 
 //Get User
 router.route("/get").get(getUser);
