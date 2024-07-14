@@ -3,6 +3,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Navbar from "./Navbar";
 import Input from "./Input";
-import Signup from "./SignUp";
+import SignUp from "./SignUp";
+import UserBook from "./UserBook";
 
-export { Button, Login, SignUp, Navbar, Input, Signup };
+export { Button, Login, SignUp, Navbar, Input, SignUp, UserBook };

@@ -1,8 +1,7 @@
 import React from "react";
 import { Home, Layout } from "./routes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login } from "./components";
-import {Signup} from "./components";
+import { Login, UserBook, Signup } from "./components";
 
 const App = () => {
   return (
@@ -14,6 +13,7 @@ const App = () => {
           
           <Route path="login" exact element={<Login/>} />
           <Route path="signup" exact element={<Signup/>} />
+          <Route path="userbook" exact element={<UserBook/>} />
           <Route path="contact" exact element={"Contact Page"} />
           <Route path="blog" exact element={"Blog Page"} />
         </Route>
