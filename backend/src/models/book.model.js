@@ -1,45 +1,65 @@
-// ISBN, title, author, publisher, year, genre, quantity.
+import mongoose from "mongoose";
 
-const mongoose = require('mongoose');
+const bookSchema = new mongoose.Schema(
+    {
+        ISBN: {
+            type: Number,
+            unique: true,
+            required: [true, "Plz enter Book Id"],
+        },
+        title: {
+            type: String,
+            required: [true, "Plz enter book Title"],
+        },
+        publisher: {
+            type: String,
+            default: "Odoo",
+            required: [true, "Plz enter publisher name"],
+        },
+        authors: [
+            {
+                type: String,
+                required: [true, "Plz enter publisher name"],
+            },
+        ],
+        pubishedDate: {
+            type: Number,
+            default: 2024,
+        },
+        quantity: {
+            type: Number,
+            required: [true, "Plz enter quantity of book"],
+            default: 1,
+        },
+        librarianId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
+        genre: {
+            type: String,
+            required: [true, "Plz enter book genre"],
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        textSnippet: {
+            type: String,
+            required: true,
+        },
+        smallThumbnail: {
+            type: String,
+            required: true,
+        },
+        thumbnail: {
+            type: String,
+            required: true,
+        },
+    },
+    { timestamps: true }
+);
 
-const bookSchema = new mongoose.Schema({
-    ISBN: {
-        type: number,
-        required: [true, "Plz enter Book Id"],
-    },
-    title: {
-        type: String,
-        required: [true, "Plz enter book Title"],
-    },
-    publisher: {
-        type: String,
-        required: [true, "Plz enter publisher name"]
-    },
-    year: {
-        type: Number,
-        default: 2024
-    },
-    quantity: {
-        type: Number,
-        required: [true, "Plz enter quantity of book"],
-        default : 1
-    },
-    
-    librarianId : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Librarian",
-        required: true
-    },
+const Book = mongoose.model("Book", bookSchema);
 
-    genre : {
-        type: String,
-        required: [true, "Plz enter book genre"]
-    },
-
-    createdAt :{
-        type: Date,
-        default: Date.now
-    }
-}) 
-
-module.exports = mongoose.model('Book', bookSchema);
+export default Book;
