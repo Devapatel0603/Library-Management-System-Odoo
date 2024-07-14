@@ -13,7 +13,7 @@ const Navbar = () => {
   ];
   return (
     <>
-      <div className="flex justify-between items-center px-4 md:px-20 border-b h-16 sticky top-0">
+      <div className="bg-white flex justify-between items-center px-4 md:px-20 border-b h-16 sticky top-0">
         {/* LOGO */}
         <div className="select-none text-3xl font-semibold cursor-pointer">
           <NavLink to="/" end className={"flex items-center gap-2"}>
