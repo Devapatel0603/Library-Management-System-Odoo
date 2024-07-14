@@ -31,9 +31,9 @@ const login = asyncHandler(async (req, res) => {
 
 //Register user
 const register = asyncHandler(async (req, res, next) => {
-    const { name, email, phone, role } = req.body;
+    const { name, email, phone, address, password } = req.body;
 
-    if (!name || !email || !phone || !role) {
+    if (!name || !email || !phone || !role || !password) {
         throw new ErrorHandler("Please, provide all details", 400);
     }
 
@@ -44,8 +44,6 @@ const register = asyncHandler(async (req, res, next) => {
     if (existedUser) {
         throw new ErrorHandler("User already exists", 400);
     }
-
-    const password = Math.floor(Math.random() * 100000000).toString();
 
     const user = await User.create({
         name,
@@ -269,6 +267,34 @@ const register = asyncHandler(async (req, res, next) => {
     });
 });
 
+//Google Login
+const googleLogin = asyncHandler(async (req, res, next) => {
+    const { name, email } = req.body;
+
+    if (!name || !email) {
+        throw new ErrorHandler("Name and email are required", 400);
+    }
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+        const generatedPassword =
+            Math.random().toString(36).slice(-8) +
+            Math.random().toString(36).slice(-8);
+
+        user = await User.create({
+            name,
+            email,
+            password: generatedPassword,
+            isAdmin: email === "dev@gmail.com",
+        });
+
+        sendToken(user, 200, res);
+    }
+
+    sendToken(user, 200, res);
+});
+
 //Logout User
 const logout = asyncHandler(async (req, res, next) => {
     res.cookie("token", null, {
@@ -395,6 +421,7 @@ const getUser = asyncHandler(async (req, res) => {
 export {
     login,
     register,
+    googleLogin,
     forgotPassword,
     resetPassword,
     logout,
