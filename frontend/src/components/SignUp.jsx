@@ -74,7 +74,7 @@ const Signup = () => {
     };
 
     return (
-            <form
+        <form
                 className="flex flex-col justify-center  p-2.5 rounded-lg sm:w-6/12 md:w-5/12 w-11/12 gap-4 mx-auto"
                 onSubmit={handleSubmit}
             >
