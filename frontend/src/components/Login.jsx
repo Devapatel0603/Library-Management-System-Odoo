@@ -20,7 +20,7 @@ const Login = () => {
         } else {
           console.log(formData);
         }
-
+// create a signup page like this getting user details like , name:text, profile_photo: file, phone: number, line1: text, city: text, country: text, pincode: number, email: email, password: password, confirmpassword: password
         // if (formData.password.trim().length < 8) {
         //     setErrorMessage("* password must be at least 8 characters");
         // } else {
