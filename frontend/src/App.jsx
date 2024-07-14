@@ -1,6 +1,7 @@
 import React from "react";
 import { Home, Layout } from "./routes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login } from "./components";
 
 const App = () => {
   return (
@@ -9,6 +10,8 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index exact element={<Home />} />
           <Route path="about" exact element={"About Page"} />
+          <Route path="login" exact element={<Login/>} />
+          
           <Route path="contact" exact element={"Contact Page"} />
           <Route path="blog" exact element={"Blog Page"} />
         </Route>
