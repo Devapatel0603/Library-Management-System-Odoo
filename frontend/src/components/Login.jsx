@@ -36,7 +36,6 @@ const Login = () => {
           withCredentials: true,
         }
       );
-
       dispatch(addUser(res.data.user));
       navigate("/");
       setErrorMessage("");
@@ -46,7 +45,6 @@ const Login = () => {
       });
     }
   };
-
   return (
     <div className="flex mt-16 justify-center items-center">
       <form
@@ -65,8 +63,18 @@ const Login = () => {
           type="password"
           onChange={handleInput}
         />
-        <p className="text-red-500 font-medium">{errorMessage}</p>
-        <p className="text-sm text-blue-500 cursor-pointer">Forget Password?</p>
+        <div className="w-full p-2.5">
+          <p className="text-red-500 font-medium">{errorMessage}</p>
+          <p className="text-sm text-blue-500 cursor-pointer">
+            Forget Password?
+          </p>
+          <p className="text-sm text-blue-500 cursor-pointer">
+            <Link to="/">Signup using Google</Link>
+          </p>
+          <p className="text-sm text-blue-500 cursor-pointer">
+            <Link to="/signup">Signup using E-mail</Link>
+          </p>
+        </div>
         <Button
           buttonText="Login"
           classes="bg-green-100 text-green-900 hover:bg-green-200"
