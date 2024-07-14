@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "../components";
+import { SearchBook } from "../components";
 
 const Home = () => {
   return (
     <>
-      <Button buttonText="Login" />
+      <SearchBook />
     </>
   );
 };
