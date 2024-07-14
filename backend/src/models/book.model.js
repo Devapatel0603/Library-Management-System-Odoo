@@ -27,7 +27,7 @@ const bookSchema = new mongoose.Schema({
     
     librarianId : {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Librarian",
+        ref: "user",
         required: true
     },
 
