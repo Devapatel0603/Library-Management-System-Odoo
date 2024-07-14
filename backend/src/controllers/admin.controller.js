@@ -282,3 +282,5 @@ const registerLibrarian = asyncHandler(async (req, res) => {
         });
     });
 });
+
+export {registerLibrarian}

@@ -10,9 +10,14 @@ const sendToken = (user, statusCode, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                enrollment: user.enrollment,
                 phone: user.phone,
-                gender: user.gender,
+                line1: user.line1,
+                state: user.state,
+                city: user.city,
+                state: user.state,
+                profile_photo: user.profile_photo,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
             },
         });
 };
