@@ -15,7 +15,7 @@ const Book = ({ bookDetail }) => {
             </h2>
             •<h2>{bookDetail.year}</h2>
           </div>
-          <p className="text-gray-400">{bookDetail.description}</p>
+          <p className="text-gray-400 text-sm">{bookDetail.description}</p>
         </div>
       </div>
     </>
