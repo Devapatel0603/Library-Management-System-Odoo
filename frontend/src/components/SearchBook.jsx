@@ -29,7 +29,12 @@ const SearchBook = ({ classes }) => {
                     placeholder="Book Name"
                     className={`w-full p-2.5 rounded-md outline-none border ${classes}`}
                 />
-                <button type="submit">Search</button>
+                <button
+                    type="submit"
+                    className={`p-2.5 px-4 rounded-md border font-medium text-blue-600 border-blue-600 bg-blue-50 hover:text-blue-700 hover:bg-blue-100`}
+                >
+                    Search
+                </button>
             </form>
         </>
     );
