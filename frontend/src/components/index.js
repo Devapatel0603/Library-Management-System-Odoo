@@ -6,18 +6,10 @@ import Input from "./Input";
 import UserBook from "./UserBook";
 import SearchBook from "./SearchBook";
 import Book from "./Book";
-import UserHome from "./UserHome";
-import GuestHome from "./GuestHome";
+import AddBook from "./AddBook";
+import AddLibrarian from "./AddLibrarian";
+import RequestList from "./RequestList";
+import LibrarianList from "./LibrarianList";
 
-export {
-  Button,
-  Login,
-  SignUp,
-  Navbar,
-  Input,
-  SearchBook,
-  Book,
-  UserBook,
-  UserHome,
-  GuestHome,
-};
+
+export { Button, Login, SignUp, Navbar, Input, SearchBook, Book, UserBook, AddBook, AddLibrarian, RequestList, LibrarianList };
