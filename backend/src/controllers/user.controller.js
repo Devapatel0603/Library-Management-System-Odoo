@@ -236,6 +236,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
     const token = req.cookies.token;
 
+    console.log(token);
     if (!token) {
         throw new ErrorHandler("You are not logged in", 200);
     }
@@ -244,7 +245,7 @@ const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(_id);
 
     if (!user) {
-        throw new ErrorHandler("Token Expired", 200);
+        throw new ErrorHandler("Token Expired", 202);
     }
     res.status(200).json({
         success: true,
