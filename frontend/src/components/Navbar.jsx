@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Button from "./Button";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -12,11 +13,12 @@ const Navbar = () => {
   ];
   return (
     <>
-      <div className="flex justify-between items-center px-4 md:px-20 bg-blue-100 h-16 sticky top-0">
+      <div className="flex justify-between items-center px-4 md:px-20 border-b h-16 sticky top-0">
         {/* LOGO */}
         <div className="select-none text-3xl font-semibold cursor-pointer">
-          <NavLink to="/" end className={"text-blue-600"}>
-            <span className="text-blue-800">LMS</span>
+          <NavLink to="/" end className={"flex items-center gap-2"}>
+            <img src="logoImg.png" alt="Logo Img" className="w-10" />
+            <img src="logo.png" alt="Logo" className="w-24" />
           </NavLink>
         </div>
         {/* NavLinks */}
@@ -45,6 +47,13 @@ const Navbar = () => {
               </NavLink>
             </div>
           ))}
+
+          {/* Login logout button */}
+          <div>
+            <NavLink to="/login">
+              <Button buttonText={"Login"} />
+            </NavLink>
+          </div>
         </div>
 
         {/* Toogle button */}

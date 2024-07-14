@@ -1,11 +1,13 @@
 import React from "react";
 
 const Button = ({
-  classes = "bg-blue-600 text-white hover:bg-blue-700",
+  classes = "text-blue-600 border-blue-600 bg-blue-50 hover:text-blue-700 hover:bg-blue-100",
   buttonText,
 }) => {
   return (
-    <button className={`p-2.5 rounded-md ${classes}`}>{buttonText}</button>
+    <button className={`p-2.5 px-4 rounded-md border font-medium ${classes}`}>
+      {buttonText}
+    </button>
   );
 };
 
