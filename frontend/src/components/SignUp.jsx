@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { Input } from "./";
 import { Button } from "./";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../features/userSlice";
+import { toast } from "react-toastify";
 
 const Signup = () => {
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         name: "",
         profile_photo: "",
@@ -27,7 +33,6 @@ const Signup = () => {
     };
 
     const handleFile = (e) => {
-        console.log(e.target.files);
         setFormData({ ...formData, [e.target.name]: e.target.files[0] });
     };
 
@@ -38,8 +43,33 @@ const Signup = () => {
         } else if (formData.password.trim().length < 8) {
             setErrorMessage("* Password must be at least 8 characters");
         } else {
-            console.log(formData);
-            // Handle form submission logic here, e.g., send data to the server
+            const SignUpData = new FormData();
+            SignUpData.append("name", formData.name);
+            SignUpData.append("profile_photo", formData.profile_photo);
+            SignUpData.append("line1", formData.line1);
+            SignUpData.append("city", formData.city);
+            SignUpData.append("state", formData.state);
+            SignUpData.append("email", formData.email);
+            SignUpData.append("phone", formData.phone);
+            SignUpData.append("pincode", formData.pincode);
+            SignUpData.append("password", formData.password);
+            SignUpData.append("country", formData.country);
+
+            const res = await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/user/register`,
+                SignUpData,
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            if (res.status === 201) {
+                dispatch(addUser(res.data.user));
+                toast.success("Register Successful");
+            }
         }
     };
 

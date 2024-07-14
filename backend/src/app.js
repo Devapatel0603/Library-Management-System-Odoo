@@ -17,9 +17,15 @@ app.use(cookieParser());
 
 //User routes
 import userRoutes from "./routes/user.routes.js";
-import adminRoutes from "./routes/admin.routes.js";
 app.use("/api/v1/user", userRoutes);
+
+//Admin routes
+import adminRoutes from "./routes/admin.routes.js";
 app.use("/api/v1/admin", adminRoutes);
+
+//Books routes
+import bookRoutes from "./routes/book.routes.js";
+app.use("/api/v1", bookRoutes);
 
 app.use(errorHandler);
 

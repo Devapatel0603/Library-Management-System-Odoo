@@ -9,57 +9,59 @@ import crypto from "crypto";
 
 //Register Librarian
 const registerLibrarian = asyncHandler(async (req, res) => {
-    const register = asyncHandler(async (req, res, next) => {
-        const { name, email, phone, line1, city, state, country, pincode } =
-            req.body;
+    const { name, email, phone, line1, city, state, country, pincode } =
+        req.body;
 
-        if (
-            !name ||
-            !email ||
-            !phone ||
-            !address ||
-            !line1 ||
-            !state ||
-            !country ||
-            !pincode ||
-            !city
-        ) {
-            throw new ErrorHandler("Please, provide all details", 400);
-        }
+    if (
+        !name ||
+        !email ||
+        !phone ||
+        !line1 ||
+        !state ||
+        !country ||
+        !pincode ||
+        !city
+    ) {
+        throw new ErrorHandler("Please, provide all details", 400);
+    }
 
-        if (pincode.toString().length < 6) {
-            throw new ErrorHandler("Pincode length must be 6 characters", 400);
-        }
+    if (pincode.toString().length < 6) {
+        throw new ErrorHandler("Pincode length must be 6 characters", 400);
+    }
 
-        const existedUser = await User.findOne({
-            email: email,
-        });
+    const existedUser = await User.findOne({
+        email: email,
+    });
 
-        if (existedUser) {
-            throw new ErrorHandler("User already exists", 400);
-        }
+    if (existedUser) {
+        throw new ErrorHandler("User already exists", 400);
+    }
 
-        let profile_photo;
-        if (!req.file) {
-            profile_photo =
-                "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
-        } else {
-            profile_photo = await uploadImage(req.file);
-        }
+    let profile_photo;
+    if (!req.file) {
+        profile_photo =
+            "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
+    } else {
+        profile_photo = await uploadImage(req.file);
+    }
 
-        const user = await User.create({
-            name,
-            email,
-            phone,
-            line1,
-            city,
-            state,
-            country,
-            pincode,
-            profile_photo,
-        });
+    const password = Math.floor(Math.random() * 100000000).toString();
 
-        const message = `
+    const user = await User.create({
+        name,
+        email,
+        phone,
+        line1,
+        role: "librarian",
+        city,
+        state,
+        country,
+        pincode,
+        password,
+        profile_photo,
+    });
+
+    const message = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -257,30 +259,29 @@ const registerLibrarian = asyncHandler(async (req, res) => {
 </html>
 `;
 
-        await sendEmail({
-            email: user.email,
-            message,
-            subject: "Library Management System",
-        });
+    await sendEmail({
+        email: user.email,
+        message,
+        subject: "Library Management System",
+    });
 
-        res.status(201).json({
-            success: true,
-            user: {
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user.role,
-                phone: user.phone,
-                line1: user.line1,
-                state: user.state,
-                city: user.city,
-                state: user.state,
-                profile_photo: user.profile_photo,
-                createdAt: user.createdAt,
-                updatedAt: user.updatedAt,
-            },
-        });
+    res.status(201).json({
+        success: true,
+        user: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            phone: user.phone,
+            line1: user.line1,
+            state: user.state,
+            city: user.city,
+            state: user.state,
+            profile_photo: user.profile_photo,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        },
     });
 });
 
-export {registerLibrarian}
+export { registerLibrarian };

@@ -1,12 +1,10 @@
 import React from "react";
-import { SearchBook } from "../components";
+import { GuestHome, UserHome } from "../components";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  return (
-    <>
-      <SearchBook />
-    </>
-  );
+  const { user } = useSelector((state) => state.user);
+  return <>{user ? <UserHome /> : <GuestHome />}</>;
 };
 
 export default Home;

@@ -14,6 +14,7 @@ const sendToken = (user, statusCode, res) => {
                 line1: user.line1,
                 state: user.state,
                 city: user.city,
+                pincode: user.pincode,
                 state: user.state,
                 profile_photo: user.profile_photo,
                 createdAt: user.createdAt,

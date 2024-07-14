@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.user);
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const handleLogout = () => {
+    console.log("Logout");
+  };
 
   const navLinks = [
     {
@@ -13,7 +19,7 @@ const Navbar = () => {
   ];
   return (
     <>
-      <div className="flex justify-between items-center px-4 md:px-20 border-b h-16 sticky top-0">
+      <div className="bg-white flex justify-between items-center px-4 md:px-20 border-b h-16 sticky top-0">
         {/* LOGO */}
         <div className="select-none text-3xl font-semibold cursor-pointer">
           <NavLink to="/" end className={"flex items-center gap-2"}>
@@ -50,9 +56,22 @@ const Navbar = () => {
 
           {/* Login logout button */}
           <div>
-            <NavLink to="/login">
-              <Button buttonText={"Login"} />
-            </NavLink>
+            {user ? (
+              <>
+                <NavLink to="/" onClick={handleLogout}>
+                  <Button
+                    buttonText={"Logout"}
+                    classes="text-red-600 border-red-600 hover:text-red-700 hover:bg-red-100"
+                  />
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">
+                  <Button buttonText={"Login"} />
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
 

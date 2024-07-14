@@ -6,7 +6,6 @@ import { sendToken } from "../utils/sendToken.js";
 import { uploadImage } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import { response } from "express";
 
 // Login user
 const login = asyncHandler(async (req, res) => {
@@ -244,11 +243,25 @@ const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(_id);
 
     if (!user) {
-        throw new ErrorHandler("Token Expired", 200);
+        throw new ErrorHandler("Token Expired", 202);
     }
     res.status(200).json({
         success: true,
-        user,
+        user: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            phone: user.phone,
+            line1: user.line1,
+            state: user.state,
+            city: user.city,
+            pincode: user.pincode,
+            state: user.state,
+            profile_photo: user.profile_photo,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        },
     });
 });
 
